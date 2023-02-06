@@ -1,0 +1,36 @@
+{
+  "name": "proyectofinalbackend",
+  "version": "1.0.0",
+  "description": "backend de Code&Beer",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "babel src/index.js -d dist",
+    "start": "babel-node src/index.js",
+    "dev": "nodemon --exec babel-node src/index.js"
+    },
+  "keywords": [
+    "backend",
+    "bar",
+    "restaurante",
+    "rolling",
+    "code&beer"
+  ],
+  "author": "Grupo 1- comision16i",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^6.9.0",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.20.7",
+    "@babel/core": "^7.20.12",
+    "@babel/node": "^7.20.7",
+    "@babel/preset-env": "^7.20.2",
+    "nodemon": "^2.0.20"
+  }
+}
