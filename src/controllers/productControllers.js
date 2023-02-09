@@ -1,19 +1,24 @@
-import { randomInteger } from '../helpers/randomInteger';
-import { validateContentProduct } from '../helpers/validateContent';
-import { validateData } from '../helpers/validateData';
-import productDB from '../models/ProductSchema';
+import { randomInteger } from "../helpers/randomInteger";
+import { validateContent } from "../helpers/validateContent";
+import { validateData } from "../helpers/validateData";
+import productDB from "../models/ProductSchema";
+
+//GET --------------------------
+export const getProducts = async (req, res) => {
+  const data = await productDB.find();
+
+  res.json(data);
+};
 
 //POST -----------------------
 export const postProduct = async (req, res) => {
   const body = req.body;
 
-  const { userId } = req.user;
-
   // 1era validacion - Contenido
-  if (!validateContentProduct('POST_PRODUCT', body)) {
+  if (!validateContent("POST_PRODUCT", body)) {
     //error de contenido
     res.status(400).json({
-      message: 'Campos invalidos',
+      message: "Campos invalidos",
     });
     return;
   }
@@ -21,7 +26,7 @@ export const postProduct = async (req, res) => {
   // 2da validacion - Campo por campo
   if (!validateData(body)) {
     res.status(400).json({
-      message: 'Datos invalidos',
+      message: "Datos invalidos",
     });
     return;
   }
@@ -40,12 +45,12 @@ export const postProduct = async (req, res) => {
     await newProduct.save();
 
     res.json({
-      message: 'Producto creado exitosamente',
+      message: "Producto creado exitosamente",
     });
   } catch (err) {
     console.log(err);
     res.status(500).json({
-      message: 'Hubo un error al guardar el producto',
+      message: "Hubo un error al guardar el producto",
     });
   }
 };

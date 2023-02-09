@@ -1,13 +1,12 @@
 import express from "express";
 
-// Los controladores son las funciones que se ejecutan cuando se
-//conecta a un endpoint específico
-//import { postLogin } from "../controllers/postControllers";
+import {getProducts, postProduct } from "../controllers/productControllers";
+import { isAuthenticated } from "../middlewares/isAuthenticated";
 
-// Se le coloca al router un nombre según funcionalidad. Este
-//archivo es de rutas de autenticación asi que se llamará routerAuth
 export const routerProducts = express.Router();
 
+//POST -----------------------------------------
+routerProducts.post("/product", isAuthenticated , postProduct);
 
-// POST -----------------------------
-//routerAuth.post("/login", postLogin);
+//GET -------------------------------------
+routerProducts.get("/products", isAuthenticated, getProducts);

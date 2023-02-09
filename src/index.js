@@ -11,7 +11,8 @@ import "./database/database";
 
 // cargamos tantos archivos de rutas como tengamos
 import { routerProducts } from "./routes/productsRoutes";
-
+import { routerUsers } from "./routes/userRoutes";
+import { routerAuth } from "./routes/authRoutes";
 
 //1- Inicializamos express
 const app = express();
@@ -22,10 +23,12 @@ app.set("PORT", process.env.PORT || 5000);
 //3- Middlewares
 app.use(morgan("dev"));
 app.use(cors());
-app.use(express.json()); // <==== parse request body as JSON
+app.use(express.json()); 
 
 //4- Rutas
 app.use(routerProducts);
+app.use(routerUsers)
+app.use(routerAuth)
 
 //5- Loop del servidor
 app.listen(app.get("PORT"), () => {

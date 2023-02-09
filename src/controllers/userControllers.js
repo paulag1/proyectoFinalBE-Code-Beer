@@ -1,7 +1,9 @@
+import bcrypt from 'bcrypt'
+
 import UserDb from '../models/UserSchema'
 
 import { randomInteger } from "../helpers/randomInteger";
-import { validateContentUser } from '../helpers/validateContent';
+import { validateContent } from '../helpers/validateContent';
 import { validateData } from '../helpers/validateData';
 
 //GET -------------
@@ -23,7 +25,7 @@ export const postUser = async (req, res) => {
     const cryptedPassword = bcrypt.hashSync(password, 10);
  
     //1ra validacion
-if(!validateContentUser("POST_USER", body)){
+if(!validateContent("POST_USER", body)){
   res.status(400).json({
     message: "Campos invalidos"
   }) 
@@ -54,8 +56,9 @@ if(!validateContentUser("POST_USER", body)){
         message: 'Usuario creado exitosamente',
       });
     } catch (err) {
+      console.log(err)
       res.status(500).json({
-        message: 'ERROR: ' + err,
+        message: 'Hubo un error al guardar el usuario',
       });
     }
   };

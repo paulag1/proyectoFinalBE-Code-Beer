@@ -1,52 +1,34 @@
-
 //PRODUCTS-------------------------
-const keysProduct = {
-    POST_PRODUCT: ['name', 'price', 'description', 'image', 'category', 'available'],
-  };
-  
-  export const validateContentProduct = (type, body) => {
-    const bodyKeysProduct = Object.keysProduct(body);
-    const expectedKeysProduct = keysProduct[type];
-    // puedo acceder a un campo de mi objeto con el nombre "campo" poniendo objeto["campo"]
-  
-    //   Compruebo cantidad de datos
-    if (expectedKeysProduct.length !== bodyKeysProduct.length) {
-      return false;
-    }
-  
-    //   Compruebo cada campo
-    expectedKeysProduct.forEach((key) => {
-      if (!bodyKeysProduct.includes(key)) {
-        return false;
-      }
-    });
-  
-    return true;
-  };
-  
+const keys = {
+  POST_PRODUCT: [
+    "name",
+    "price",
+    "description",
+    "image",
+    "category",
+  ],
+  POST_USER: ["name", "lastName", "username", "password"],
 
-
-  //USERS ----------------------
-const keysUser = {
-  POST_USER: ['name', 'lastName', 'username', 'password'],
+  POST_LOGIN: ["username", "password"]
 };
 
-export const validateContentUser = (type, body) => {
-  const bodyKeysUser = Object.keysUser(body);
-  const expectedKeysUser = keysUser[type];
+export const validateContent = (type, body) => {
+  const bodyKeys = Object.keys(body);
+  const expectedKeys = keys[type];
   // puedo acceder a un campo de mi objeto con el nombre "campo" poniendo objeto["campo"]
 
   //   Compruebo cantidad de datos
-  if (expectedKeysUser.length !== bodyKeysUser.length) {
+  if (expectedKeys.length !== bodyKeys.length) {
     return false;
   }
 
   //   Compruebo cada campo
-  expectedKeysUser.forEach((key) => {
-    if (!bodyKeysUser.includes(key)) {
+  expectedKeys.forEach((key) => {
+    if (!bodyKeys.includes(key)) {
       return false;
     }
   });
 
   return true;
 };
+

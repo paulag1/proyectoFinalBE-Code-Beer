@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const { Schema } = mongoose;
 
@@ -12,4 +12,4 @@ const productSchema = new Schema({
   available: Boolean,
 });
 
-export default mongoose.model('Products', productSchema);
+export default mongoose.model("Products", productSchema);
