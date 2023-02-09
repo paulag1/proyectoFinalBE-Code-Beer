@@ -72,3 +72,6 @@ export const postLogin = async (req, res) => {
     token,
   });
 };
+
+
+//FALTA HACER EL LOGOUT ---------------------

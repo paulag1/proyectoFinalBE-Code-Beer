@@ -10,3 +10,5 @@ routerProducts.post("/product", isAuthenticated , postProduct);
 
 //GET -------------------------------------
 routerProducts.get("/products", isAuthenticated, getProducts);
+
+
