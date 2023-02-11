@@ -1,15 +1,18 @@
 //PRODUCTS-------------------------
 const keys = {
-  POST_PRODUCT: [
+  POST_PRODUCT: ["name", "price", "description", "image", "category"],
+  PUT_PRODUCT: [
     "name",
     "price",
     "description",
     "image",
     "category",
+    "productID",
   ],
+
   POST_USER: ["name", "lastName", "username", "password"],
 
-  POST_LOGIN: ["username", "password"]
+  POST_LOGIN: ["username", "password"],
 };
 
 export const validateContent = (type, body) => {
@@ -31,4 +34,3 @@ export const validateContent = (type, body) => {
 
   return true;
 };
-
