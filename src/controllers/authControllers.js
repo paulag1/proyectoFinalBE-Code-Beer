@@ -11,7 +11,7 @@ import { validateData } from "../helpers/validateData";
 export const postLogin = async (req, res) => {
   /*
     req (body) : {
-      username: "1234",
+      email: "jkd@nkdl",
       password: "1234"
     }
   */
@@ -38,15 +38,15 @@ export const postLogin = async (req, res) => {
   // 1- Intentar buscar el usuario en la DB
   // UserDb es el archivo de usuarios exportado del modelo
   const user = await UserDb.findOne({
-    username: body.username,
+    email: body.email,
   });
 
   // 2- Validar las credenciales
-  // username incorrecto
+  // email incorrecto
   // Comparo contraseñas (contraseña incorrecta)
   if (!user || !bcrypt.compareSync(body.password, user.password)) {
     res.status(401).json({
-      message: "Usuario o contraseña no valido(s)",
+      message: "Email o contraseña no valido(s)",
     });
     return;
   }
@@ -56,7 +56,7 @@ export const postLogin = async (req, res) => {
   const userInfo = {
     name: user.name,
     lastName: user.lastName,
-    username: user.username,
+    email: user.email,
     isActive: user.isActive,
   };
 

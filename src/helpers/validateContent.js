@@ -10,9 +10,10 @@ const keys = {
     "productID",
   ],
 
-  POST_USER: ["name", "lastName", "username", "password"],
+  POST_USER: ["name", "lastName", "email", "password"],
+  PUT_USER: ["name", "lastName", "id"],
 
-  POST_LOGIN: ["username", "password"],
+  POST_LOGIN: ["email", "password"],
 };
 
 export const validateContent = (type, body) => {

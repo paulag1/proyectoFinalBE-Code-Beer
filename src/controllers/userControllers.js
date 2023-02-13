@@ -6,7 +6,7 @@ import { randomInteger } from "../helpers/randomInteger";
 import { validateContent } from '../helpers/validateContent';
 import { validateData } from '../helpers/validateData';
 
-//GET -------------
+//GET ------------------------------------------------------
 export const getUsers = async (req, res) => {
   const data = await UserDb.find();
 
@@ -16,7 +16,7 @@ export const getUsers = async (req, res) => {
 };
 
 
-//POST ----------
+//POST -----------------------------------------------------
 export const postUser = async (req, res) => {
     const body = req.body;
   
@@ -44,7 +44,7 @@ if(!validateContent("POST_USER", body)){
       id: randomInteger(0, 1500000),
       name: body.name,
       lastName: body.lastName,
-      username: body.username,
+      email: body.email,
       password: cryptedPassword,
       isActive: true,
     });
@@ -63,3 +63,54 @@ if(!validateContent("POST_USER", body)){
     }
   };
   
+
+
+//PUT ----------------------------------------------
+export const putUser = async (req, res) => {
+  const body = req.body;
+
+  // 1era validacion - Contenido
+  if (!validateContent("PUT_USER", body)) {
+    //error de contenido
+    res.status(400).json({
+      message: "Campos invalidos",
+    });
+    return;
+  }
+
+  // 2da validacion - Campo por campo
+  if (!validateData(body)) {
+    res.status(400).json({
+      message: "Datos invalidos",
+    });
+    return;
+  }
+
+  // Pasa validacion, se puede modificar el usuario
+  const userModified = await UserDb.findOne({
+       id: body.id
+  });
+
+  if (!userModified) {
+    res.status(404).json({
+      message: "Usuario no encontrado",
+    });
+    return;
+  }
+
+  userModified.name = body.name;
+  userModified.lastName = body.lastName;
+
+  try {
+    await userModified.save();
+
+    res.json({
+      message: "Usuario modificado exitosamente",
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      message: "Hubo un error al modificar el usuario",
+    });
+  }
+};
