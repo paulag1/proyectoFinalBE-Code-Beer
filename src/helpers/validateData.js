@@ -32,8 +32,7 @@ export const validateData = (body) => {
         }
         break;
       case "password":
-//BUSCAR UN REGEX VALIDO
-        const passwordRegex = /^(?=.*[a-z]){2}(?=.*\d){2}(?!\s)[a-zA-Z\d]{6,16}$/
+        const passwordRegex = /^(?=.*[a-z]{2,})(?=.*[0-9]{2,})(?=.*\s)(?=.{6,20})/
         if (!passwordRegex.test(value)) {
           return false;
         }
