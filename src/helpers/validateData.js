@@ -21,6 +21,7 @@ export const validateData = (body) => {
         }
         break;
       case "price":
+      case "quantity":
         if (isNaN(value)) return false;
         if (value < 0) return false;
         break;
@@ -32,7 +33,7 @@ export const validateData = (body) => {
         }
         break;
       case "password":
-        const passwordRegex = /^(?=.*[a-z]{2,})(?=.*[0-9]{2,})(?=.*\s)(?=.{6,20})/
+        const passwordRegex = /^(?=.*[a-z]{2,})(?=.*[0-9]{2,})(?=.{6,20})/;
         if (!passwordRegex.test(value)) {
           return false;
         }

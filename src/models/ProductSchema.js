@@ -4,12 +4,13 @@ const { Schema } = mongoose;
 
 const productSchema = new Schema({
   productID: { type: Number, required: true },
-  name: String,
-  price: Number,
+  name: { type: String, required: true },
+  price: { type: Number, required: true },
+  image: { type: String, required: true },
   description: String,
-  image: String,
   category: String,
   isActive: Boolean,
+  quantity: Number,
 });
 
 export default mongoose.model("Products", productSchema);

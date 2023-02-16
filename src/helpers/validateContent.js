@@ -1,4 +1,3 @@
-//PRODUCTS-------------------------
 const keys = {
   POST_PRODUCT: ["name", "price", "description", "image", "category"],
   PUT_PRODUCT: [
@@ -15,6 +14,7 @@ const keys = {
 
   POST_LOGIN: ["email", "password"],
 };
+
 
 export const validateContent = (type, body) => {
   const bodyKeys = Object.keys(body);

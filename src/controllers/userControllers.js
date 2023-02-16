@@ -114,3 +114,37 @@ export const putUser = async (req, res) => {
     });
   }
 };
+
+
+// DELETE --------------------------------------
+export const deleteUser = async (req, res) => {
+  const { userID } = req.params;
+
+  // eliminacion lógica
+
+  const user = await UserDb.findOne({
+    id: userID
+  });
+
+  if (!user) {
+    res.status(404).json({
+      message: "Usuario no encontrado",
+    });
+    return;
+  }
+
+  user.isActive = false;
+
+  try {
+    await user.save();
+
+    res.json({
+      message: "Usuario eliminado exitosamente",
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      message: "Hubo un error al eliminar el usuario",
+    });
+  }
+};
