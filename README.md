@@ -1,6 +1,6 @@
 <h1 style="display:block; text-align:center;">Code & Beer </h1>
 
-Repositorio del sitio web de Code&Beer
+***Repositorio del sitio web de Code&Beer***
 
 
 #### Se podrán realizar las siguientes funciones:
@@ -48,6 +48,7 @@ El usuario podrá:
      - Podrá acceder facilmente a su carrito y a su cuenta para realizar modificaciones.
      - Se mostrará el estado del pedido, siendo las opciones “En espera” y “Pedido realizado” los dos estados posibles. 
 
+
 ### Panel del Pedido
 
 Para poder acceder a esta pantalla, el usuario deberá estar logeado y haber ingresado el numero de mesa en la cual está sentado.
@@ -57,10 +58,12 @@ En esta pantalla el usuario podrá visualizar su pedido para:
      - Modificar su pedido de ser necesario.
      - Cerrar el pedido.
 
+
 ### Panel de Cuenta
 
 Para poder acceder a esta pantalla, el usuario deberá estar logeado.
 En esta pantalla el usuario podrá visualizar sus datos, modificar su nombre y apellido de ser necesario y cerrar sesión.
+
 
 ### Listado de Productos que visualiza el ADMINISTRADOR
 
