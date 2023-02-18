@@ -83,5 +83,14 @@ Se podrán modificar los productos, de ser necesario, permitiendo marcar como NO
  
 ### Contribuidores:
 
+Candela M. Mercado
+Rubén Vizcarra
+Esteban David Arborio
+Paula Lucía Guillén
+Juan Carlos Medina
+Florencia Noelia Lancioni 
+
+
+
 
 
