@@ -1,18 +1,18 @@
 import express from "express";
 
 import {deleteProduct, getProducts, postProduct, putProduct } from "../controllers/productControllers";
-import { checkAdmin, isAuthenticated } from "../middlewares/isAuthenticated";
+import { checkAdmin } from "../middlewares/isAuthenticated";
 
 export const routerProducts = express.Router();
 
 //POST ------------------------------------
-routerProducts.post("/product", isAuthenticated , postProduct);
+routerProducts.post("/product", checkAdmin , postProduct);
 
 //GET -------------------------------------
 routerProducts.get("/products", checkAdmin , getProducts);
 
 //DELETE ----------------------------------
-routerProducts.delete("/product/:productId", isAuthenticated, deleteProduct)
+routerProducts.delete("/product/:productId", checkAdmin, deleteProduct)
 
 //PUT ------------------------------------- 
-routerProducts.put('/product/:productId', isAuthenticated, putProduct)
+routerProducts.put('/product/:productId', checkAdmin, putProduct)
