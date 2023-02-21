@@ -58,6 +58,7 @@ export const postLogin = async (req, res) => {
     lastName: user.lastName,
     email: user.email,
     isActive: user.isActive,
+    isAdmin: user.isAdmin
   };
 
   const secretKey = process.env.JWT_SECRET_KEY;
@@ -72,6 +73,3 @@ export const postLogin = async (req, res) => {
     token,
   });
 };
-
-
-//FALTA HACER EL LOGOUT ---------------------
