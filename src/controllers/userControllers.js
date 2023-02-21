@@ -47,6 +47,7 @@ if(!validateContent("POST_USER", body)){
       email: body.email,
       password: cryptedPassword,
       isActive: true,
+      isAdmin: body.isAdmin
     });
   
     try {
