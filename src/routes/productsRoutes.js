@@ -1,7 +1,7 @@
 import express from "express";
 
 import {deleteProduct, getProducts, postProduct, putProduct } from "../controllers/productControllers";
-import { checkAdmin } from "../middlewares/isAuthenticated";
+import { checkAdmin, isAuthenticated } from "../middlewares/isAuthenticated";
 
 export const routerProducts = express.Router();
 
@@ -9,7 +9,7 @@ export const routerProducts = express.Router();
 routerProducts.post("/product", checkAdmin , postProduct);
 
 //GET -------------------------------------
-routerProducts.get("/products", getProducts);
+routerProducts.get("/products", isAuthenticated , getProducts);
 
 //DELETE ----------------------------------
 routerProducts.delete("/product/:productId", checkAdmin, deleteProduct)
