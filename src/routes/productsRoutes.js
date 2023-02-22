@@ -9,7 +9,7 @@ export const routerProducts = express.Router();
 routerProducts.post("/product", checkAdmin , postProduct);
 
 //GET -------------------------------------
-routerProducts.get("/products", checkAdmin , getProducts);
+routerProducts.get("/products", getProducts);
 
 //DELETE ----------------------------------
 routerProducts.delete("/product/:productId", checkAdmin, deleteProduct)
