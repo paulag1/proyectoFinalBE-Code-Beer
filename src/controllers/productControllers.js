@@ -39,7 +39,8 @@ export const postProduct = async (req, res) => {
     description: body.description,
     image: body.image,
     category: body.category,
-    isActive: true,
+    isActive: body.isActive,
+    
   });
 
   try {
