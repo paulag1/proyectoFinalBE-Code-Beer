@@ -9,9 +9,8 @@ const keys = {
     "productID",
   ],
 
-  POST_USER: ["name", "lastName", "email", "password", "isAdmin"],
+  POST_USER: ["name", "lastName", "email", "password"],
   PUT_USER: ["name", "lastName", "id"],
-
   POST_LOGIN: ["email", "password"],
 };
 
