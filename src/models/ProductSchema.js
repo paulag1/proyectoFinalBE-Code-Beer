@@ -9,8 +9,8 @@ const productSchema = new Schema({
   image: { type: String, required: true },
   description: String,
   category: String,
-  isActive: Boolean,
-  quantity: Number,
+  isActive: true,
+  quantity: 1,
 });
 
 export default mongoose.model("Products", productSchema);
