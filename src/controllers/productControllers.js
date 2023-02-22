@@ -39,8 +39,8 @@ export const postProduct = async (req, res) => {
     description: body.description,
     image: body.image,
     category: body.category,
-    isActive: body.isActive,
-    quantity: body.quantity,
+    isActive: true,
+    quantity: 1,
   });
 
   try {
@@ -128,8 +128,8 @@ export const putProduct = async (req, res) => {
   productModified.description = body.description;
   productModified.image = body.image;
   productModified.category = body.category;
-  productModified.isActive = body.isActive;
-  productModified.quantity = body.quantity;
+  // productModified.isActive = body.isActive;
+  // productModified.quantity = body.quantity;
 
   try {
     await productModified.save();
