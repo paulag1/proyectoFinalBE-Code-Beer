@@ -74,7 +74,8 @@ export const deleteProduct = async (req, res) => {
     return;
   }
 
-  product.isActive = false;
+  product.isActive = !product.isActive;
+  
 
   try {
     await product.save();
@@ -129,7 +130,7 @@ export const putProduct = async (req, res) => {
   productModified.image = body.image;
   productModified.category = body.category;
   // productModified.isActive = body.isActive;
-  // productModified.quantity = body.quantity;
+  // productModified.quantity = 1;
 
   try {
     await productModified.save();
