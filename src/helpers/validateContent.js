@@ -10,7 +10,7 @@ const keys = {
   ],
 
   POST_USER: ["name", "lastName", "email", "password"],
-  PUT_USER: ["name", "lastName", "id"],
+  PUT_USER: ["name", "lastName","email"],
   POST_LOGIN: ["email", "password"],
 };
 
