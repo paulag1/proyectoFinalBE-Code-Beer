@@ -16,5 +16,4 @@ routerUsers.get("/users", getUsers);
 // PUT -----------
 routerUsers.put("/user/:id", isAuthenticated, putUser);
 
-//DELETE ---------
-routerUsers.delete("/user/:userID", isAuthenticated, deleteUser)
+
