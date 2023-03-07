@@ -14,7 +14,7 @@ routerUsers.post("/user", postUser);
 routerUsers.get("/users", getUsers);
 
 // PUT -----------
-routerUsers.put("/user/:id", isAuthenticated, putUser);
+routerUsers.put("/user/:email", isAuthenticated, putUser);
 
 //DELETE ---------
-routerUsers.delete("/user/:userID", isAuthenticated, deleteUser)
+routerUsers.delete("/user/:userID", isAuthenticated, deleteUser);
