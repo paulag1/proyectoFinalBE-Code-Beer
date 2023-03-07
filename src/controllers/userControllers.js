@@ -89,7 +89,7 @@ export const putUser = async (req, res) => {
 
   // Pasa validacion, se puede modificar el usuario
   const userModified = await UserDb.findOne({
-       id: body.id
+       email: body.email
   });
 
   if (!userModified) {
