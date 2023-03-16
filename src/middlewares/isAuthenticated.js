@@ -17,14 +17,13 @@ export const isAuthenticated = (req, res, next) => {
  try { 
  const tokenInfo = jwt.verify(token, secretKey); 
  req.user = tokenInfo;
- console.log(req.user) 
  
  
  next(); 
 
  } catch (err) { 
  
-  // token no valido
+
  res.status(403).json({ 
  message: 'Token no valido o expirado', 
  }); 

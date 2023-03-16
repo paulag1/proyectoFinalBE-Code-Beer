@@ -3,14 +3,15 @@ import { validateContent } from "../helpers/validateContent";
 import { validateData } from "../helpers/validateData";
 import productDB from "../models/ProductSchema";
 
-//GET --------------------------
+
 export const getProducts = async (req, res) => {
   const data = await productDB.find();
 
   res.json(data);
 };
 
-//POST -----------------------
+
+
 export const postProduct = async (req, res) => {
   const body = req.body;
 
@@ -57,7 +58,7 @@ export const postProduct = async (req, res) => {
   }
 };
 
-// DELETE ----------------------------------------
+
 export const deleteProduct = async (req, res) => {
   const { productId } = req.params;
 
@@ -91,7 +92,7 @@ export const deleteProduct = async (req, res) => {
   }
 };
 
-// PUT -------------------------------------------
+
 export const putProduct = async (req, res) => {
   const body = req.body;
 

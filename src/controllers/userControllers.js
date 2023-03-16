@@ -6,7 +6,7 @@ import { randomInteger } from "../helpers/randomInteger";
 import { validateContent } from '../helpers/validateContent';
 import { validateData } from '../helpers/validateData';
 
-//GET ------------------------------------------------------
+
 export const getUsers = async (req, res) => {
   const data = await UserDb.find();
 
@@ -16,7 +16,7 @@ export const getUsers = async (req, res) => {
 };
 
 
-//POST -----------------------------------------------------
+
 export const postUser = async (req, res) => {
     const body = req.body;
   
@@ -24,6 +24,7 @@ export const postUser = async (req, res) => {
   
     const cryptedPassword = bcrypt.hashSync(password, 10);
  
+   
    
 if(!validateContent("POST_USER", body)){
   res.status(400).json({
@@ -38,6 +39,7 @@ if(!validateContent("POST_USER", body)){
     });
     return;
   }
+
 
 
     const newUser = new UserDb({
@@ -66,7 +68,7 @@ if(!validateContent("POST_USER", body)){
   
 
 
-//PUT ----------------------------------------------
+
 export const putUser = async (req, res) => {
   const body = req.body;
 
@@ -117,35 +119,3 @@ export const putUser = async (req, res) => {
 };
 
 
-// DELETE --------------------------------------
-export const deleteUser = async (req, res) => {
-  const { userID } = req.params;
-
-
-
-  const user = await UserDb.findOne({
-    id: userID
-  });
-
-  if (!user) {
-    res.status(404).json({
-      message: "Usuario no encontrado",
-    });
-    return;
-  }
-
-  user.isActive = false;
-
-  try {
-    await user.save();
-
-    res.json({
-      message: "Usuario eliminado exitosamente",
-    });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({
-      message: "Hubo un error al eliminar el usuario",
-    });
-  }
-};
