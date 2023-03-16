@@ -1,62 +1,53 @@
-import jwt from 'jsonwebtoken'; 
+import jwt from "jsonwebtoken";
 
+const secretKey = process.env.JWT_SECRET_KEY;
 
-const secretKey = process.env.JWT_SECRET_KEY; 
+export const isAuthenticated = (req, res, next) => {
+  const headers = req.headers;
+  const authHeader = headers.authorization;
 
-export const isAuthenticated = (req, res, next) => { 
- const headers = req.headers; 
- const authHeader = headers.authorization; 
- 
- if(!authHeader) { 
-     res.status(403).json({ 
-         message: 'Token no valido o expirado', 
-        }); 
-        return; 
-    } 
-    const token = authHeader.split(' ')[1]; 
- try { 
- const tokenInfo = jwt.verify(token, secretKey); 
- req.user = tokenInfo;
- 
- 
- next(); 
+  if (!authHeader) {
+    res.status(403).json({
+      message: "Token no valido o expirado",
+    });
+    return;
+  }
+  const token = authHeader.split(" ")[1];
+  try {
+    const tokenInfo = jwt.verify(token, secretKey);
+    req.user = tokenInfo;
 
- } catch (err) { 
- 
+    next();
+  } catch (err) {
+    res.status(403).json({
+      message: "Token no valido o expirado",
+    });
+    return;
+  }
+};
 
- res.status(403).json({ 
- message: 'Token no valido o expirado', 
- }); 
- return; 
- }};
+export const checkAdmin = (req, res, next) => {
+  const headers = req.headers;
+  const authHeader = headers.authorization;
 
+  if (!authHeader) {
+    res.status(403).json({
+      message: "Token no valido o expirado",
+    });
+    return;
+  }
+  const token = authHeader.split(" ")[1];
+  try {
+    const tokenInfo = jwt.verify(token, secretKey);
+    req.user = tokenInfo;
 
-
-export const checkAdmin = (req, res, next) => { 
- const headers = req.headers; 
- const authHeader = headers.authorization; 
- 
- if(!authHeader) { 
-     res.status(403).json({ 
-         message: 'Token no valido o expirado', 
-        }); 
-        return; 
-    } 
-    const token = authHeader.split(' ')[1]; 
- try { 
- const tokenInfo = jwt.verify(token, secretKey); 
- req.user = tokenInfo;
-
-if(req.user.isAdmin === true) next(); 
-else res.status(403).json('Usuario no autorizado')
-
- } catch (err) { 
- 
-  
- res.status(403).json({ 
- message: 'Token no valido o expirado', 
- }); 
- return; 
- }};
-
- 
+    if (req.user.isAdmin === true) next();
+    else res.status(403).json("Usuario no autorizado");
+  } catch (err) {
+    
+    res.status(403).json({
+      message: "Token no valido o expirado",
+    });
+    return;
+  }
+};

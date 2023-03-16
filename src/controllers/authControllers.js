@@ -6,23 +6,16 @@ import jwt from "jsonwebtoken";
 import { validateContent } from "../helpers/validateContent";
 import { validateData } from "../helpers/validateData";
 
-
-
 export const postLogin = async (req, res) => {
-
-
   const body = req.body;
 
-  
   if (!validateContent("POST_LOGIN", body)) {
-    
     res.status(400).json({
       message: "Campos invalidos",
     });
     return;
   }
 
-  
   if (!validateData(body)) {
     res.status(400).json({
       message: "Datos invalidos",
@@ -46,17 +39,15 @@ export const postLogin = async (req, res) => {
     lastName: user.lastName,
     email: user.email,
     isActive: user.isActive,
-    isAdmin: user.isAdmin
+    isAdmin: user.isAdmin,
   };
 
   const secretKey = process.env.JWT_SECRET_KEY;
 
-  
   const token = jwt.sign(userInfo, secretKey, {
     expiresIn: "1h",
   });
 
-  
   res.json({
     token,
   });
