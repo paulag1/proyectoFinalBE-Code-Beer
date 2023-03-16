@@ -1,5 +1,3 @@
-// Crear , editar un usuario
-
 import express from "express";
 import { isAuthenticated } from "../middlewares/isAuthenticated";
 

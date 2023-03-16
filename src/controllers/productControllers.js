@@ -14,16 +14,16 @@ export const getProducts = async (req, res) => {
 export const postProduct = async (req, res) => {
   const body = req.body;
 
-  // 1era validacion - Contenido
+  
   if (!validateContent("POST_PRODUCT", body)) {
-    //error de contenido
+    
     res.status(400).json({
       message: "Campos invalidos",
     });
     return;
   }
 
-  // 2da validacion - Campo por campo
+  
   if (!validateData(body)) {
     res.status(400).json({
       message: "Datos invalidos",
@@ -31,7 +31,7 @@ export const postProduct = async (req, res) => {
     return;
   }
 
-  // Pasa validacion, se puede crear el producto
+  
   const newProduct = new productDB({
     productID: randomInteger(0, 1500000),
     name: body.name,
@@ -61,7 +61,7 @@ export const postProduct = async (req, res) => {
 export const deleteProduct = async (req, res) => {
   const { productId } = req.params;
 
-  // eliminacion lógica
+  
 
   const product = await productDB.findOne({
     productID: productId,
@@ -95,16 +95,16 @@ export const deleteProduct = async (req, res) => {
 export const putProduct = async (req, res) => {
   const body = req.body;
 
-  // 1era validacion - Contenido
+  
   if (!validateContent("PUT_PRODUCT", body)) {
-    //error de contenido
+    
     res.status(400).json({
       message: "Campos invalidos",
     });
     return;
   }
 
-  // 2da validacion - Campo por campo
+  
   if (!validateData(body)) {
     res.status(400).json({
       message: "Datos invalidos",
@@ -112,7 +112,7 @@ export const putProduct = async (req, res) => {
     return;
   }
 
-  // Pasa validacion, se puede modificar el producto
+  
   const productModified = await productDB.findOne({
        productID: body.productID
   });
@@ -129,8 +129,7 @@ export const putProduct = async (req, res) => {
   productModified.description = body.description;
   productModified.image = body.image;
   productModified.category = body.category;
-  // productModified.isActive = body.isActive;
-  // productModified.quantity = 1;
+  
 
   try {
     await productModified.save();

@@ -30,7 +30,7 @@ app.use(routerProducts);
 app.use(routerUsers)
 app.use(routerAuth)
 
-//5- Loop del servidor
+
 app.listen(app.get("PORT"), () => {
   console.log(`Servidor ejecutándose en puerto
 ${app.get("PORT")}`);

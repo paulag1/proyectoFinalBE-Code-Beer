@@ -24,14 +24,14 @@ export const postUser = async (req, res) => {
   
     const cryptedPassword = bcrypt.hashSync(password, 10);
  
-    //1ra validacion
+   
 if(!validateContent("POST_USER", body)){
   res.status(400).json({
     message: "Campos invalidos"
   }) 
   return
 }
-   //2da validacion 
+   
    if (!validateData(body)) {
     res.status(400).json({
       message: 'Campos invalidos',
@@ -39,7 +39,7 @@ if(!validateContent("POST_USER", body)){
     return;
   }
 
-// Datos validos => crear usuario
+
     const newUser = new UserDb({
       id: randomInteger(0, 1500000),
       name: body.name,
@@ -57,7 +57,7 @@ if(!validateContent("POST_USER", body)){
         message: 'Usuario creado exitosamente',
       });
     } catch (err) {
-      console.log(err)
+      
       res.status(500).json({
         message: 'Hubo un error al guardar el usuario',
       });
@@ -70,16 +70,16 @@ if(!validateContent("POST_USER", body)){
 export const putUser = async (req, res) => {
   const body = req.body;
 
-  // 1era validacion - Contenido
+  
   if (!validateContent("PUT_USER", body)) {
-    //error de contenido
+    
     res.status(400).json({
       message: "Campos invalidos",
     });
     return;
   }
 
-  // 2da validacion - Campo por campo
+  
   if (!validateData(body)) {
     res.status(400).json({
       message: "Datos invalidos",
@@ -87,7 +87,7 @@ export const putUser = async (req, res) => {
     return;
   }
 
-  // Pasa validacion, se puede modificar el usuario
+  
   const userModified = await UserDb.findOne({
        email: body.email
   });
@@ -121,7 +121,7 @@ export const putUser = async (req, res) => {
 export const deleteUser = async (req, res) => {
   const { userID } = req.params;
 
-  // eliminacion lógica
+
 
   const user = await UserDb.findOne({
     id: userID

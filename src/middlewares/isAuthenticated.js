@@ -19,7 +19,7 @@ export const isAuthenticated = (req, res, next) => {
  req.user = tokenInfo;
  console.log(req.user) 
  
- //si el token es valido
+ 
  next(); 
 
  } catch (err) { 
@@ -53,7 +53,7 @@ else res.status(403).json('Usuario no autorizado')
 
  } catch (err) { 
  
-  // token no valido
+  
  res.status(403).json({ 
  message: 'Token no valido o expirado', 
  }); 

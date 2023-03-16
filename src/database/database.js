@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 dotenv.config();
 
-// El string de conexión debe estar siempre protegido en el .env
+
 const mongoUri = process.env.MONGO_URI;
 mongoose.set("strictQuery", true);
 mongoose
