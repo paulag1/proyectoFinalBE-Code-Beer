@@ -7,12 +7,12 @@ import { getUsers, postUser, putUser } from "../controllers/userControllers";
 
 export const routerUsers = express.Router();
 
-// POST -----------
+
 routerUsers.post("/user", postUser);
 
-// GET -----------
+
 routerUsers.get("/users", getUsers);
 
-// PUT -----------
+
 routerUsers.put("/user/:email", isAuthenticated, putUser);
 

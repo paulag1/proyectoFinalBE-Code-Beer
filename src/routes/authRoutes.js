@@ -6,6 +6,6 @@ import { postLogin } from "../controllers/authControllers";
 export const routerAuth = express.Router()
 
 
-// POST -----------------------------
+
 routerAuth.post("/login", postLogin);
 
