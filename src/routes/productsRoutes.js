@@ -5,14 +5,14 @@ import { checkAdmin, isAuthenticated } from "../middlewares/isAuthenticated";
 
 export const routerProducts = express.Router();
 
-//POST ------------------------------------
+
 routerProducts.post("/product", checkAdmin , postProduct);
 
-//GET -------------------------------------
+
 routerProducts.get("/products", isAuthenticated , getProducts);
 
-//DELETE ----------------------------------
+
 routerProducts.delete("/product/:productId", checkAdmin, deleteProduct)
 
-//PUT ------------------------------------- 
+
 routerProducts.put('/product/:productId', checkAdmin, putProduct)

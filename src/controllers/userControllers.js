@@ -6,7 +6,7 @@ import { randomInteger } from "../helpers/randomInteger";
 import { validateContent } from '../helpers/validateContent';
 import { validateData } from '../helpers/validateData';
 
-//GET ------------------------------------------------------
+
 export const getUsers = async (req, res) => {
   const data = await UserDb.find();
 
@@ -16,7 +16,7 @@ export const getUsers = async (req, res) => {
 };
 
 
-//POST -----------------------------------------------------
+
 export const postUser = async (req, res) => {
     const body = req.body;
   
@@ -24,14 +24,14 @@ export const postUser = async (req, res) => {
   
     const cryptedPassword = bcrypt.hashSync(password, 10);
  
-    //1ra validacion
+   
 if(!validateContent("POST_USER", body)){
   res.status(400).json({
     message: "Campos invalidos"
   }) 
   return
 }
-   //2da validacion 
+  
    if (!validateData(body)) {
     res.status(400).json({
       message: 'Campos invalidos',
@@ -39,7 +39,7 @@ if(!validateContent("POST_USER", body)){
     return;
   }
 
-// Datos validos => crear usuario
+
     const newUser = new UserDb({
       id: randomInteger(0, 1500000),
       name: body.name,
@@ -66,20 +66,20 @@ if(!validateContent("POST_USER", body)){
   
 
 
-//PUT ----------------------------------------------
+
 export const putUser = async (req, res) => {
   const body = req.body;
 
-  // 1era validacion - Contenido
+ 
   if (!validateContent("PUT_USER", body)) {
-    //error de contenido
+   
     res.status(400).json({
       message: "Campos invalidos",
     });
     return;
   }
 
-  // 2da validacion - Campo por campo
+
   if (!validateData(body)) {
     res.status(400).json({
       message: "Datos invalidos",
@@ -87,7 +87,7 @@ export const putUser = async (req, res) => {
     return;
   }
 
-  // Pasa validacion, se puede modificar el usuario
+
   const userModified = await UserDb.findOne({
        email: body.email
   });
