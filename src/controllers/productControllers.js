@@ -3,20 +3,17 @@ import { validateContent } from "../helpers/validateContent";
 import { validateData } from "../helpers/validateData";
 import productDB from "../models/ProductSchema";
 
-
 export const getProducts = async (req, res) => {
   const data = await productDB.find();
 
   res.json(data);
 };
 
-
-
 export const postProduct = async (req, res) => {
   const body = req.body;
 
-
   if (!validateContent("POST_PRODUCT", body)) {
+    
     res.status(400).json({
       message: "Campos invalidos",
     });
@@ -30,7 +27,6 @@ export const postProduct = async (req, res) => {
     return;
   }
 
- 
   const newProduct = new productDB({
     productID: randomInteger(0, 1500000),
     name: body.name,
@@ -49,17 +45,15 @@ export const postProduct = async (req, res) => {
       message: "Producto creado exitosamente",
     });
   } catch (err) {
-    console.log(err);
+    console.error(err);
     res.status(500).json({
       message: "Hubo un error al guardar el producto",
     });
   }
 };
 
-
 export const deleteProduct = async (req, res) => {
   const { productId } = req.params;
-
 
   const product = await productDB.findOne({
     productID: productId,
@@ -73,7 +67,6 @@ export const deleteProduct = async (req, res) => {
   }
 
   product.isActive = !product.isActive;
-  
 
   try {
     await product.save();
@@ -89,19 +82,16 @@ export const deleteProduct = async (req, res) => {
   }
 };
 
-
 export const putProduct = async (req, res) => {
   const body = req.body;
 
-
   if (!validateContent("PUT_PRODUCT", body)) {
-
+    //error de contenido
     res.status(400).json({
       message: "Campos invalidos",
     });
     return;
   }
-
 
   if (!validateData(body)) {
     res.status(400).json({
@@ -111,7 +101,7 @@ export const putProduct = async (req, res) => {
   }
 
   const productModified = await productDB.findOne({
-       productID: body.productID
+    productID: body.productID,
   });
 
   if (!productModified) {
@@ -127,7 +117,6 @@ export const putProduct = async (req, res) => {
   productModified.image = body.image;
   productModified.category = body.category;
 
-
   try {
     await productModified.save();
 
@@ -135,7 +124,7 @@ export const putProduct = async (req, res) => {
       message: "Producto modificado exitosamente",
     });
   } catch (err) {
-    console.log(err);
+    console.error(err);
     res.status(500).json({
       message: "Hubo un error al modificar el producto",
     });

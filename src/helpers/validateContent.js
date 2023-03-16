@@ -10,21 +10,17 @@ const keys = {
   ],
 
   POST_USER: ["name", "lastName", "email", "password"],
-  PUT_USER: ["name", "lastName","email"],
+  PUT_USER: ["name", "lastName", "email"],
   POST_LOGIN: ["email", "password"],
 };
-
 
 export const validateContent = (type, body) => {
   const bodyKeys = Object.keys(body);
   const expectedKeys = keys[type];
 
-
-
   if (expectedKeys.length !== bodyKeys.length) {
     return false;
   }
-
 
   expectedKeys.forEach((key) => {
     if (!bodyKeys.includes(key)) {
